@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="yapg"/>
+  <qresource prefix="icons">
+    <file>system-password-2.png</file>
+  </qresource>
+</RCC>

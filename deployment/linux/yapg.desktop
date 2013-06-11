@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=0.1
+Type=Application
+Terminal=false
+Exec=yapg
+Name=Yet Another Password Generator
+GenericName=YAPG
+Comment=Generate secure passwords in a few clicks.
+Icon=/usr/share/yapg/ezwebgallery-256px.png
+Categories=Qt;Utility
+Name[en_US]=yapg.desktop
