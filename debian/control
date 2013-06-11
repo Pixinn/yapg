@@ -3,10 +3,10 @@ Section: utils
 Priority: optional
 Maintainer: Christophe Meneboeuf (XtoF) <xtof@ezwebgallery.org>
 Build-Depends: qt4-qmake, libqt4-dev, cdbs, debhelper (>= 8)
-Standards-Version: 3.9.3
+Standards-Version: 3.9.4
 Homepage: http://www.ezwebgallery.org
 
-Package: ezwebgallery
+Package: yapg
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: Generates strong passwords in one click!
