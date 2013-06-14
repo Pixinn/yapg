@@ -38,9 +38,9 @@ QVector<QString> CGenerator::generate( const t_Parameters& params )
 
   QVector<QChar> charSet;
   charSet += s_charSet;
-  charSet += s_capitalSet;
-  charSet += s_numberSet;
-  charSet += params.symbolSet;
+  if( params.nbCapitals > 0 ) { charSet += s_capitalSet; }
+  if( params.nbNumbers > 0 ) { charSet += s_numberSet; }
+  if( params.nbSymbols > 0 ) { charSet += params.symbolSet; }
 
   for( unsigned int i = 0; i < params.nbToGenerate; i++ )
   {

@@ -6,6 +6,6 @@ Exec=yapg
 Name=Yet Another Password Generator
 GenericName=YAPG
 Comment=Generate secure passwords in a few clicks.
-Icon=/usr/share/yapg/ezwebgallery-256px.png
+Icon=/usr/share/yapg/system-password-2.png
 Categories=Qt;Utility
 Name[en_US]=yapg.desktop

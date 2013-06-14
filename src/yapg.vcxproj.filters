@@ -66,21 +66,21 @@
     <CustomBuild Include="yapg.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="..\resources\yapg.qrc">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
     <CustomBuild Include="yapg.ui">
       <Filter>Form Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\..\..\Dev\C\YAPG\resources\yapg.qrc">
-      <Filter>Resource Files</Filter>
-    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="..\..\..\..\Dev\C\YAPG\resources\yapg.rc">
-      <Filter>Resource Files</Filter>
-    </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\..\..\Dev\C\YAPG\resources\system-password-2.png">
+    <None Include="..\resources\system-password-2.png">
       <Filter>Resource Files</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\resources\yapg.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

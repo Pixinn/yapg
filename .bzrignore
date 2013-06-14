@@ -1,0 +1,17 @@
+ipch
+yapg.sdf
+yapg.suo
+src/GeneratedFiles
+src/ui_yapg.h
+src/yapg.vcxproj.user
+Linux/Debug.~1~
+Linux/Generator.o.~1~
+Linux/main.o.~1~
+Linux/moc_yapg.cpp.~1~
+Linux/moc_yapg.o.~1~
+Linux/qrc_yapg.cpp.~1~
+Linux/qrc_yapg.o.~1~
+Linux/Release.~1~
+Linux/yapg.o.~1~
+Win32/Debug
+Win32/Release
