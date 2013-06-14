@@ -63,9 +63,9 @@ void yapg::onGenerate( void )
 
   //reading params
   params.length = _ui.sb_Length->value();
-  params.nbCapitals = _ui.sb_NbCapitals->value();
-  params.nbNumbers = _ui.sb_NbNumbers->value();
-  params.nbSymbols = _ui.sb_NbSymbols->value();
+  _ui.cb_Capitals->isChecked() ? params.nbCapitals = _ui.sb_NbCapitals->value() : params.nbCapitals = 0;  
+  _ui.cb_Numbers->isChecked() ? params.nbNumbers = _ui.sb_NbNumbers->value() : params.nbNumbers = 0; 
+  _ui.cb_Symbols->isChecked() ? params.nbSymbols = _ui.sb_NbSymbols->value() : params.nbSymbols = 0;
   params.nbToGenerate = _ui.sb_NbToGenerate->value();
   params.seed = _timer.elapsed(); //seed = ms elapsed since launch
   QString symbSet = _ui.le_SymbolSet->text();
@@ -89,6 +89,7 @@ void yapg::onAbout( void )
                         tr("About YAPG"),
                         "(c)2013<br/>Yet Another Password Generator by Christophe Meneboeuf dev@ezwebgallery.org.<br/>Software provided under the GNU GPLv3 license." );
 }
+
 
 void yapg::onNbCapitals( int newValue )
 {
