@@ -1,6 +1,6 @@
-yapg (0.1-0ubuntu1) raring; urgency=low
+yapg (0.4-0ubuntu1) raring; urgency=low
 
-  * Initial version
+  * Secure seeding
 
- -- Christophe Meneboeuf (XtoF) <xtof@ezwebgallery.org>  Tue, 11 Jun 2013 23:41:11 +0100
+ -- Christophe Meneboeuf (XtoF) <xtof@ezwebgallery.org>  Sat, 25 Jan 2014 23:00:00 +0100
 

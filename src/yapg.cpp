@@ -17,9 +17,7 @@
 */
 
 #include <QMessageBox>
-#include <QString>
-#include <QChar>
-#include <QVector>
+
 
 #include "yapg.h"
 #include "Generator.h"
@@ -30,7 +28,6 @@ yapg::yapg(void)
     : QMainWindow(),
     _nbCapitals(0), _nbNumbers(0), _nbSymbols(0)
 {
-  _timer.start();
   _ui.setupUi(this);
   QString symbSet;
   foreach( QChar c, s_defaultSymbSet ) {
@@ -58,27 +55,33 @@ yapg::~yapg()
 
 void yapg::onGenerate( void )
 {
-  CGenerator::t_Parameters params;
-  CGenerator generator;
-
-  //reading params
-  params.length = _ui.sb_Length->value();
-  _ui.cb_Capitals->isChecked() ? params.nbCapitals = _ui.sb_NbCapitals->value() : params.nbCapitals = 0;  
-  _ui.cb_Numbers->isChecked() ? params.nbNumbers = _ui.sb_NbNumbers->value() : params.nbNumbers = 0; 
-  _ui.cb_Symbols->isChecked() ? params.nbSymbols = _ui.sb_NbSymbols->value() : params.nbSymbols = 0;
-  params.nbToGenerate = _ui.sb_NbToGenerate->value();
-  params.seed = _timer.elapsed(); //seed = ms elapsed since launch
-  QString symbSet = _ui.le_SymbolSet->text();
-  for(int i = 0; i < symbSet.length(); i++ ) {
-    params.symbolSet << symbSet[i];
-  }
-
-  //generation
-  QVector<QString> passwords = generator.generate( params );
+  try
+  {
+      CGenerator::t_Parameters params;
+      CGenerator generator;
   
-  //display result
-  foreach( QString password, passwords ) {
-    _ui.te_Result->appendPlainText( password );
+      //reading params
+      params.length = _ui.sb_Length->value();
+      _ui.cb_Capitals->isChecked() ? params.nbCapitals = _ui.sb_NbCapitals->value() : params.nbCapitals = 0;  
+      _ui.cb_Numbers->isChecked() ? params.nbNumbers = _ui.sb_NbNumbers->value() : params.nbNumbers = 0; 
+      _ui.cb_Symbols->isChecked() ? params.nbSymbols = _ui.sb_NbSymbols->value() : params.nbSymbols = 0;
+      params.nbToGenerate = _ui.sb_NbToGenerate->value();
+      QString symbSet = _ui.le_SymbolSet->text();
+      for(int i = 0; i < symbSet.length(); i++ ) {
+        params.symbolSet << symbSet[i];
+      }
+
+      //generation
+      QVector<QString> passwords = generator.generate( params );
+  
+      //display result
+      foreach( QString password, passwords ) {
+        _ui.te_Result->appendPlainText( password );
+      }
+  }
+  catch( QString exception ) {
+      QMessageBox msg( QMessageBox::Critical, tr("An exception occurred"), exception );
+      msg.exec();
   }
   
 }
@@ -87,7 +90,7 @@ void yapg::onAbout( void )
 {
     QMessageBox::about( this,
                         tr("About YAPG"),
-                        "(c)2013<br/>Yet Another Password Generator by Christophe Meneboeuf dev@ezwebgallery.org.<br/>Software provided under the GNU GPLv3 license." );
+                        "(c)2013-2014<br/>Yet Another Password Generator by Christophe Meneboeuf dev@ezwebgallery.org.<br/>Software provided under the GNU GPLv3 license." );
 }
 
 

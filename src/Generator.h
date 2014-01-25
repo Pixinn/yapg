@@ -35,7 +35,6 @@ public:
     unsigned int nbSymbols;
     unsigned int nbToGenerate;
     QVector<QChar> symbolSet;
-    unsigned int seed;
   }t_Parameters;
 
   CGenerator(void);
