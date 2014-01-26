@@ -19,6 +19,8 @@
 #ifndef _SEEDER_H_
 #define _SEEDER_H_
 
+#include <QObject>
+#include <QString>
 
 //Generate a SECURE seed
 //Platform specific implementations of execute()
@@ -26,7 +28,9 @@ class Seeder
 {
 public:
 
-  Seeder(void){  }
+  Seeder(void) :
+     _exceptionStr( QObject::tr("Seed was not properly generated!\nGenerating secure passwords is not possible!") )
+  {  }
   ~Seeder(void) {}
 
   static Seeder& GetInstance( void ) { 
@@ -37,6 +41,7 @@ public:
 
 private:
   static Seeder s_instance;
+  const QString _exceptionStr;
 };
 
 #endif

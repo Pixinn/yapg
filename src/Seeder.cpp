@@ -33,7 +33,7 @@ unsigned int Seeder::execute( void )
 {
   unsigned int seed;
   if( rand_s( &seed ) != 0 ) { //rand_s returns 0 if OK
-      throw QObject::tr("Seed was not properly generated!\nGenerating secure passwords is not possible!");
+      throw _exceptionStr;
   }
   return seed;
 }
@@ -47,9 +47,10 @@ unsigned int Seeder::execute( void )
   FILE *urandom;
   unsigned int seed;
   
-  urandom = fopen ("/dev/urandom", "r"); 
-  fread (&seed, sizeof (seed), 1, urandom);
-  printf("%u",seed);
+  urandom = fopen ("/dev/urandom", "r");
+  if( fread( &seed, sizeof(seed), 1, urandom ) != 1 ) {
+    throw _exceptionStr;
+  }
 
   return seed;
 }
