@@ -1,6 +1,6 @@
 /* 
  *  YAPG:
- *  Copyright (C) 2013 Christophe Meneboeuf <dev@ezwebgallery.org>
+ *  Copyright (C) 2014 Christophe Meneboeuf <dev@ezwebgallery.org>
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -16,35 +16,42 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef YAPG_H
-#define YAPG_H
 
-#include <QMainWindow>
+#include <QObject>
+#include <QtGlobal>
+#include <QString>
 
-#include "ui_yapg.h"
+#include "Seeder.h"
 
-class yapg : public QMainWindow
+Seeder Seeder::s_instance;
+
+
+#ifdef Q_OS_WIN32
+#include <cstdlib>
+#include <cassert>
+unsigned int Seeder::execute( void )
 {
-    Q_OBJECT
+  unsigned int seed;
+  if( rand_s( &seed ) != 0 ) { //rand_s returns 0 if OK
+      throw _exceptionStr;
+  }
+  return seed;
+}
+#endif
 
-public:
-    yapg(void);
-    ~yapg();
 
-public slots:
-  void onGenerate( void );
-  void onAbout( void );
-  void onNbCapitals( int );
-  void onNbNumbers( int );
-  void onNbSymbols( int );
+#ifdef Q_OS_LINUX
+#include <cstdio> 
+unsigned int Seeder::execute( void )
+{
+  FILE *urandom;
+  unsigned int seed;
+  
+  urandom = fopen ("/dev/urandom", "r");
+  if( fread( &seed, sizeof(seed), 1, urandom ) != 1 ) {
+    throw _exceptionStr;
+  }
 
-private:
-  static const QVector<QChar> s_defaultSymbSet;    
-  Ui::yapgClass _ui;
-  unsigned int _nbCapitals;
-  unsigned int _nbNumbers;
-  unsigned int _nbSymbols;
-    
-};
-
-#endif // YAPG_H
+  return seed;
+}
+#endif

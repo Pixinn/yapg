@@ -16,6 +16,7 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include "Seeder.h"
 #include "Generator.h"
 
 const QVector<QChar> CGenerator::s_charSet = QVector<QChar>() <<'a'<<'b'<<'c'<<'d'<<'e'<<'f'<<'g'<<'h'<<'i'<<'j'<<'k'<<'l'<<'m'<<'n'<<'o'<<'p'<<'q'<<'r'<<'s'<<'t'<<'u'<<'v'<<'w'<<'x'<<'y'<<'z';
@@ -25,6 +26,7 @@ const QVector<QChar> CGenerator::s_numberSet = QVector<QChar>() <<'0'<<'1'<<'2'<
 
 CGenerator::CGenerator(void)
 {
+  qsrand( Seeder::GetInstance().execute() );
 }
 
 CGenerator::~CGenerator(void)
@@ -34,7 +36,6 @@ CGenerator::~CGenerator(void)
 QVector<QString> CGenerator::generate( const t_Parameters& params )
 {
   QVector<QString> passwords;
-  qsrand( params.seed );
 
   QVector<QChar> charSet;
   charSet += s_charSet;

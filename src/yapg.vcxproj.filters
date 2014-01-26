@@ -53,6 +53,9 @@
     <ClCompile Include="GeneratedFiles\qrc_yapg.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="Seeder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Generator.h">
@@ -60,6 +63,9 @@
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_yapg.h">
       <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Seeder.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,6 @@
 /* 
  *  YAPG:
- *  Copyright (C) 2013 Christophe Meneboeuf <dev@ezwebgallery.org>
+ *  Copyright (C) 2014 Christophe Meneboeuf <dev@ezwebgallery.org>
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -16,35 +16,32 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef YAPG_H
-#define YAPG_H
+#ifndef _SEEDER_H_
+#define _SEEDER_H_
 
-#include <QMainWindow>
+#include <QObject>
+#include <QString>
 
-#include "ui_yapg.h"
-
-class yapg : public QMainWindow
+//Generate a SECURE seed
+//Platform specific implementations of execute()
+class Seeder
 {
-    Q_OBJECT
-
 public:
-    yapg(void);
-    ~yapg();
 
-public slots:
-  void onGenerate( void );
-  void onAbout( void );
-  void onNbCapitals( int );
-  void onNbNumbers( int );
-  void onNbSymbols( int );
+  Seeder(void) :
+     _exceptionStr( QObject::tr("Seed was not properly generated!\nGenerating secure passwords is not possible!") )
+  {  }
+  ~Seeder(void) {}
+
+  static Seeder& GetInstance( void ) { 
+    return s_instance;
+  }
+
+  unsigned int execute( void );
 
 private:
-  static const QVector<QChar> s_defaultSymbSet;    
-  Ui::yapgClass _ui;
-  unsigned int _nbCapitals;
-  unsigned int _nbNumbers;
-  unsigned int _nbSymbols;
-    
+  static Seeder s_instance;
+  const QString _exceptionStr;
 };
 
-#endif // YAPG_H
+#endif
