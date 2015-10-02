@@ -1,7 +1,7 @@
 
 CONFIG  += debug_and_release \
 
-#QT += widgets
+QT += widgets
 
 #### Preprocessor ###
 win32:DEFINES += _CRT_RAND_S
