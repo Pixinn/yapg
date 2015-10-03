@@ -1,6 +1,6 @@
 /* 
  *  YAPG:
- *  Copyright (C) 2014 Christophe Meneboeuf <dev@ezwebgallery.org>
+ *  Copyright (C) 2014-2015 Christophe Meneboeuf <dev@ezwebgallery.org>
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -16,31 +16,31 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef _SEEDER_H_
-#define _SEEDER_H_
+#ifndef _RAND_H
+#define _RAND_H
 
 #include <QObject>
 #include <QString>
 
 //Generate a SECURE seed
 //Platform specific implementations of execute()
-class Seeder
+class Rand
 {
 public:
 
-  Seeder(void) :
-     _exceptionStr( QObject::tr("Seed was not properly generated!\nGenerating secure passwords is not possible!") )
-  {  }
-  ~Seeder(void) {}
+	Rand(void) :
+     _exceptionStr( QObject::tr("Impossiblility to get random material.") )
+    {  }
+	~Rand(void) {}
 
-  static Seeder& GetInstance( void ) { 
+  static Rand& GetInstance(void) {
     return s_instance;
   }
 
-  unsigned int execute( void );
+  unsigned int execute( void ) const;
 
 private:
-  static Seeder s_instance;
+  static Rand s_instance;
   const QString _exceptionStr;
 };
 

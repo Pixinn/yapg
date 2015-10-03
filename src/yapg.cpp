@@ -1,6 +1,6 @@
 /* 
  *  YAPG:
- *  Copyright (C) 2013 Christophe Meneboeuf <dev@ezwebgallery.org>
+ *  Copyright (C) 2013-2015 Christophe Meneboeuf <dev@ezwebgallery.org>
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -41,11 +41,11 @@ yapg::yapg(void)
   _nbSymbols = _ui.sb_NbSymbols->value();
   
   //connections to gui
-  bool fconnected = connect( _ui.pb_Generate, SIGNAL(clicked()), this, SLOT(onGenerate()) );
-  fconnected &= connect( _ui.actionAbout, SIGNAL(triggered()), this, SLOT(onAbout()) );
-  fconnected &= connect( _ui.sb_NbCapitals, SIGNAL(valueChanged(int)), this, SLOT(onNbCapitals(int)) );
-  fconnected &= connect( _ui.sb_NbNumbers, SIGNAL(valueChanged(int)), this, SLOT(onNbNumbers(int)) );
-  fconnected &= connect( _ui.sb_NbSymbols, SIGNAL(valueChanged(int)), this, SLOT(onNbSymbols(int)) );
+  bool fconnected = static_cast<bool>( connect( _ui.pb_Generate, SIGNAL(clicked()), this, SLOT(onGenerate()) ) );
+  fconnected &= static_cast<bool>(connect(_ui.actionAbout, SIGNAL(triggered()), this, SLOT(onAbout())) );
+  fconnected &= static_cast<bool>(connect(_ui.sb_NbCapitals, SIGNAL(valueChanged(int)), this, SLOT(onNbCapitals(int))) );
+  fconnected &= static_cast<bool>(connect(_ui.sb_NbNumbers, SIGNAL(valueChanged(int)), this, SLOT(onNbNumbers(int))) );
+  fconnected &= static_cast<bool>(connect(_ui.sb_NbSymbols, SIGNAL(valueChanged(int)), this, SLOT(onNbSymbols(int))) );
 }
 
 yapg::~yapg()
@@ -90,7 +90,7 @@ void yapg::onAbout( void )
 {
     QMessageBox::about( this,
                         tr("About YAPG"),
-                        "(c)2013-2014<br/>Yet Another Password Generator by Christophe Meneboeuf dev@ezwebgallery.org.<br/>Software provided under the GNU GPLv3 license." );
+                        "(c)2013-2015<br/>Yet Another Password Generator by Christophe Meneboeuf dev@ezwebgallery.org.<br/>Software provided under the GNU GPLv3 license." );
 }
 
 

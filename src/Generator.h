@@ -1,6 +1,6 @@
 /* 
  *  YAPG:
- *  Copyright (C) 2013 Christophe Meneboeuf <dev@ezwebgallery.org>
+ *  Copyright (C) 2013-2015 Christophe Meneboeuf <dev@ezwebgallery.org>
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -24,6 +24,8 @@
 #include <QChar>
 #include <QString>
 
+#include "Rand.h"
+
 class CGenerator
 {
 public:
@@ -37,9 +39,8 @@ public:
     QVector<QChar> symbolSet;
   }t_Parameters;
 
-  CGenerator(void);
-  ~CGenerator(void);
-
+  CGenerator(void) : _rnd(Rand::GetInstance())
+  { }
   QVector<QString> generate( const t_Parameters& );
 
 private:
@@ -50,6 +51,8 @@ private:
   static const QVector<QChar> s_charSet;
   static const QVector<QChar> s_capitalSet;
   static const QVector<QChar> s_numberSet;
+
+  const Rand& _rnd;
 };
 
 #endif

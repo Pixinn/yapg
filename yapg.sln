@@ -1,21 +1,20 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yapg", "src\yapg.vcxproj", "{1C63F8E2-417A-4E2D-8DCA-DCE30458C1D4}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yapg", "yapg.vcxproj", "{5BC75C0B-B0B8-3898-B1FE-64F26A00CAEE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Win32 = Debug|Win32
-		Release|Win32 = Release|Win32
-		Template|Win32 = Template|Win32
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1C63F8E2-417A-4E2D-8DCA-DCE30458C1D4}.Debug|Win32.ActiveCfg = Debug|Win32
-		{1C63F8E2-417A-4E2D-8DCA-DCE30458C1D4}.Debug|Win32.Build.0 = Debug|Win32
-		{1C63F8E2-417A-4E2D-8DCA-DCE30458C1D4}.Release|Win32.ActiveCfg = Release|Win32
-		{1C63F8E2-417A-4E2D-8DCA-DCE30458C1D4}.Release|Win32.Build.0 = Release|Win32
-		{1C63F8E2-417A-4E2D-8DCA-DCE30458C1D4}.Template|Win32.ActiveCfg = Template|Win32
-		{1C63F8E2-417A-4E2D-8DCA-DCE30458C1D4}.Template|Win32.Build.0 = Template|Win32
+		{5BC75C0B-B0B8-3898-B1FE-64F26A00CAEE}.Debug|x64.ActiveCfg = Debug|x64
+		{5BC75C0B-B0B8-3898-B1FE-64F26A00CAEE}.Debug|x64.Build.0 = Debug|x64
+		{5BC75C0B-B0B8-3898-B1FE-64F26A00CAEE}.Release|x64.ActiveCfg = Release|x64
+		{5BC75C0B-B0B8-3898-B1FE-64F26A00CAEE}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

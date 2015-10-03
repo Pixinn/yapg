@@ -1,6 +1,6 @@
 /* 
  *  YAPG:
- *  Copyright (C) 2013 Christophe Meneboeuf <dev@ezwebgallery.org>
+ *  Copyright (C) 2013-2015 Christophe Meneboeuf <dev@ezwebgallery.org>
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -16,7 +16,7 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "Seeder.h"
+#include "Rand.h"
 #include "Generator.h"
 
 const QVector<QChar> CGenerator::s_charSet = QVector<QChar>() <<'a'<<'b'<<'c'<<'d'<<'e'<<'f'<<'g'<<'h'<<'i'<<'j'<<'k'<<'l'<<'m'<<'n'<<'o'<<'p'<<'q'<<'r'<<'s'<<'t'<<'u'<<'v'<<'w'<<'x'<<'y'<<'z';
@@ -24,14 +24,6 @@ const QVector<QChar> CGenerator::s_capitalSet = QVector<QChar>() <<'A'<<'B'<<'C'
 const QVector<QChar> CGenerator::s_numberSet = QVector<QChar>() <<'0'<<'1'<<'2'<<'3'<<'4'<<'5'<<'6'<<'7'<<'8'<<'9';
 
 
-CGenerator::CGenerator(void)
-{
-  qsrand( Seeder::GetInstance().execute() );
-}
-
-CGenerator::~CGenerator(void)
-{
-}
 
 QVector<QString> CGenerator::generate( const t_Parameters& params )
 {
@@ -61,7 +53,7 @@ QList<QChar> CGenerator::getRdmChars( const QVector<QChar>& charSet, const unsig
 {
   QList<QChar> rdmChars;
   for( unsigned int j = 0; j < nb; j ++ )  {
-    int index = qrand() % charSet.size();
+    int index = _rnd.execute() % charSet.size();
     rdmChars << charSet.at(index);
   }
   return rdmChars;
@@ -71,7 +63,7 @@ QString CGenerator::getRmdPassword( QList<QChar> charSet ) const
 {
   QString password;
   while( charSet.size() > 0 ) {
-    int index = qrand() % charSet.size();
+    int index = _rnd.execute() % charSet.size();
     password.append( charSet.takeAt(index) );
   }
   return password;

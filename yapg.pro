@@ -1,14 +1,20 @@
 
 CONFIG  += debug_and_release \
 
-#QT += widgets
+QT += widgets
 
 #### Preprocessor ###
 win32:DEFINES += _CRT_RAND_S
 
 ### User defined variables ###
+unix {
+	OS = Unix
+}
+win32 {
+	OS = Win32
+}
 Debug|Release{
-    BUILDDIR = $$PWD/Linux
+    BUILDDIR = $$PWD/$$OS
 }
 
 
@@ -36,12 +42,12 @@ INCLUDEPATH +=  $${PWD}/src \
 
 HEADERS += ./src/Generator.h \
                       ./src/yapg.h \
-                      ./src/Seeder.h
+                      ./src/Rand.h
 
 SOURCES += ./src/Generator.cpp \
            ./src/yapg.cpp \
            ./src/main.cpp \
-           ./src/Seeder.cpp
+           ./src/Rand.cpp
 
 FORMS += src/yapg.ui
 
