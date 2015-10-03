@@ -1,6 +1,8 @@
-yapg (0.4-0ubuntu1) raring; urgency=low
+yapg (0.5-0ubuntu1) raring; urgency=low
 
-  * Secure seeding
+  * More secure generation
+  * Mac port
+  * Qt5 port
 
- -- Christophe Meneboeuf (XtoF) <xtof@ezwebgallery.org>  Sat, 25 Jan 2014 23:00:00 +0100
+ -- Christophe Meneboeuf (XtoF) <xtof@ezwebgallery.org>  Sat, 03 Oct 2015 21:43:00 +0100
 

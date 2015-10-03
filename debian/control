@@ -2,7 +2,7 @@ source: yapg
 Section: utils
 Priority: optional
 Maintainer: Christophe Meneboeuf (XtoF) <xtof@ezwebgallery.org>
-Build-Depends: qt4-qmake, libqt4-dev, cdbs, debhelper (>= 8)
+Build-Depends: qt4-qmake, qt5-default, cdbs, debhelper (>= 8)
 Standards-Version: 3.9.4
 Homepage: http://www.ezwebgallery.org
 
