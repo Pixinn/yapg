@@ -21,37 +21,35 @@
 #include <QtGlobal>
 #include <QString>
 
-#include "Seeder.h"
+#include "Rand.h"
 
-Seeder Seeder::s_instance;
+Rand Rand::s_instance;
 
 
 #ifdef Q_OS_WIN32
 #include <cstdlib>
 #include <cassert>
-unsigned int Seeder::execute( void )
+unsigned int Rand::execute(void) const
 {
-  unsigned int seed;
-  if( rand_s( &seed ) != 0 ) { //rand_s returns 0 if OK
+    unsigned int rnd;
+    if (rand_s(&rnd) != 0) { //rand_s returns 0 if OK
       throw _exceptionStr;
-  }
-  return seed;
+    }
+    return rnd;
 }
 #endif
 
 
-#ifdef Q_OS_LINUX
+#if defined(Q_OS_LINUX) || defined(Q_OS_MAC)
 #include <cstdio> 
-unsigned int Seeder::execute( void )
+unsigned int Rand::execute( void ) const
 {
   FILE *urandom;
-  unsigned int seed;
-  
+  unsigned int rnd;
   urandom = fopen ("/dev/urandom", "r");
-  if( fread( &seed, sizeof(seed), 1, urandom ) != 1 ) {
+  if( fread( &rnd, sizeof(rnd), 1, urandom ) != 1 ) {
     throw _exceptionStr;
   }
-
-  return seed;
+  return rnd;
 }
 #endif
