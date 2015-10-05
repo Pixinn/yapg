@@ -2,6 +2,8 @@
 CONFIG  += debug_and_release \
         += C++11
 
+QMAKE_CXXFLAGS += -std=c++11
+		
 QT += widgets
 
 #### Preprocessor ###

@@ -19,19 +19,17 @@
 #ifndef _RAND_H
 #define _RAND_H
 
-#include <QObject>
-#include <QFile>
-
 //Generate a SECURE seed
 //Platform specific implementations of execute()
 class Rand
 {
 public:
+
   static Rand& GetInstance(void) {
     return s_instance;
   }
 
-  unsigned int execute( void ) const;
+  unsigned char execute( void ) const;
 
 private:
   static Rand s_instance;

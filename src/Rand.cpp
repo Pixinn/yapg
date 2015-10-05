@@ -17,9 +17,9 @@
 */
 
 #include <fstream>
+#include <memory>
 
 #include <QObject>
-#include <QtGlobal>
 #include <QString>
 
 #include "Rand.h"
@@ -32,24 +32,24 @@ Rand Rand::s_instance;
 #ifdef Q_OS_WIN32
 #include <cstdlib>
 #include <cassert>
-unsigned int Rand::execute(void) const
+unsigned char Rand::execute(void) const
 {
     unsigned int rnd;
     if (rand_s(&rnd) != 0) { //rand_s returns 0 if OK
       throw std::runtime_error("Bad random number generation!");
     }
-    return rnd;
+    return static_cast<unsigned char>(rnd % 0xFF);
 }
 #endif
 
 
 #if defined(Q_OS_LINUX) || defined(Q_OS_MAC)
 #include <cstdio> 
-unsigned int Rand::execute( void ) const
+unsigned char Rand::execute( void ) const
 {
     unsigned int rnd;
     unique_ptr<ifstream> urandom( new ifstream("/dev/urandom", ios::in|ios::binary) );
-    urandom->read( reinterpret_cast<char*>(&rnd), sizeof( unsigned int ));
+    urandom->read( reinterpret_cast<char*>(&rnd), sizeof( unsigned char ));
     if( !urandom ) {
         throw std::runtime_error("Bad random number generation!");
     }

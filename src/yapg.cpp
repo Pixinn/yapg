@@ -55,32 +55,31 @@ yapg::~yapg()
 
 void yapg::onGenerate( void )
 {
+  CGenerator::t_Parameters params;
+  CGenerator generator;
+
+  //reading params
+  params.length = _ui.sb_Length->value();
+  _ui.cb_Capitals->isChecked() ? params.nbCapitals = _ui.sb_NbCapitals->value() : params.nbCapitals = 0;
+  _ui.cb_Numbers->isChecked() ? params.nbNumbers = _ui.sb_NbNumbers->value() : params.nbNumbers = 0;
+  _ui.cb_Symbols->isChecked() ? params.nbSymbols = _ui.sb_NbSymbols->value() : params.nbSymbols = 0;
+  params.nbToGenerate = _ui.sb_NbToGenerate->value();
+  QString symbSet = _ui.le_SymbolSet->text();
+  for(int i = 0; i < symbSet.length(); i++ ) {
+    params.symbolSet << symbSet[i];
+  }
   try
   {
-      CGenerator::t_Parameters params;
-      CGenerator generator;
-  
-      //reading params
-      params.length = _ui.sb_Length->value();
-      _ui.cb_Capitals->isChecked() ? params.nbCapitals = _ui.sb_NbCapitals->value() : params.nbCapitals = 0;  
-      _ui.cb_Numbers->isChecked() ? params.nbNumbers = _ui.sb_NbNumbers->value() : params.nbNumbers = 0; 
-      _ui.cb_Symbols->isChecked() ? params.nbSymbols = _ui.sb_NbSymbols->value() : params.nbSymbols = 0;
-      params.nbToGenerate = _ui.sb_NbToGenerate->value();
-      QString symbSet = _ui.le_SymbolSet->text();
-      for(int i = 0; i < symbSet.length(); i++ ) {
-        params.symbolSet << symbSet[i];
-      }
-
       //generation
       QVector<QString> passwords = generator.generate( params );
-  
+
       //display result
       foreach( QString password, passwords ) {
         _ui.te_Result->appendPlainText( password );
       }
   }
-  catch( QString exception ) {
-      QMessageBox msg( QMessageBox::Critical, tr("An exception occurred"), exception );
+  catch( const std::out_of_range& e ) {
+      QMessageBox msg( QMessageBox::Critical, tr("An error occured"), e.what() );
       msg.exec();
   }
   
