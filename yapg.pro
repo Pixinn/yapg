@@ -1,5 +1,6 @@
 
 CONFIG  += debug_and_release \
+        += C++11
 
 QT += widgets
 

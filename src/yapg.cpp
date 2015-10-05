@@ -22,7 +22,7 @@
 #include "yapg.h"
 #include "Generator.h"
 
-const QVector<QChar> yapg::s_defaultSymbSet = QVector<QChar>() << '&' << '#' << '\'' << '{' << '}' << '(' << ')' << '[' << ']' << '-' << '_' << '|' << '\\' << '/' << '@' << '+' << '=' << '*' << '$' << '£' << ',' << ';' << ':' << '!' << '?' << '.' ;
+const QVector<QChar> yapg::s_defaultSymbSet = QVector<QChar>() << '&' << '#' << '\'' << '{' << '}' << '(' << ')' << '[' << ']' << '-' << '_' << '|' << '\\' << '/' << '@' << '+' << '=' << '*' << '$' << ',' << ';' << ':' << '!' << '?' << '.' ;
 
 yapg::yapg(void)
     : QMainWindow(),

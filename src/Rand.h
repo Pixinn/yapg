@@ -20,19 +20,13 @@
 #define _RAND_H
 
 #include <QObject>
-#include <QString>
+#include <QFile>
 
 //Generate a SECURE seed
 //Platform specific implementations of execute()
 class Rand
 {
 public:
-
-	Rand(void) :
-     _exceptionStr( QObject::tr("Impossiblility to get random material.") )
-    {  }
-	~Rand(void) {}
-
   static Rand& GetInstance(void) {
     return s_instance;
   }
@@ -41,7 +35,6 @@ public:
 
 private:
   static Rand s_instance;
-  const QString _exceptionStr;
 };
 
 #endif

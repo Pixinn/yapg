@@ -16,12 +16,15 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include <fstream>
 
 #include <QObject>
 #include <QtGlobal>
 #include <QString>
 
 #include "Rand.h"
+
+using namespace std;
 
 Rand Rand::s_instance;
 
@@ -33,7 +36,7 @@ unsigned int Rand::execute(void) const
 {
     unsigned int rnd;
     if (rand_s(&rnd) != 0) { //rand_s returns 0 if OK
-      throw _exceptionStr;
+      throw std::runtime_error("Bad random number generation!");
     }
     return rnd;
 }
@@ -44,12 +47,13 @@ unsigned int Rand::execute(void) const
 #include <cstdio> 
 unsigned int Rand::execute( void ) const
 {
-  FILE *urandom;
-  unsigned int rnd;
-  urandom = fopen ("/dev/urandom", "r");
-  if( fread( &rnd, sizeof(rnd), 1, urandom ) != 1 ) {
-    throw _exceptionStr;
-  }
-  return rnd;
+    unsigned int rnd;
+    unique_ptr<ifstream> urandom( new ifstream("/dev/urandom", ios::in|ios::binary) );
+    urandom->read( reinterpret_cast<char*>(&rnd), sizeof( unsigned int ));
+    if( !urandom ) {
+        throw std::runtime_error("Bad random number generation!");
+    }
+    return rnd;
+
 }
 #endif
