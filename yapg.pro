@@ -13,8 +13,12 @@ win32:DEFINES += _CRT_RAND_S
 unix {
 	OS = Unix
 }
+macx {
+	ICON = ./resources/yapg.icns
+}
 win32 {
 	OS = Win32
+	RC_FILE = ./resources/yapg.rc
 }
 Debug|Release{
     BUILDDIR = $$PWD/$$OS
@@ -58,7 +62,7 @@ FORMS += src/yapg.ui
 RESOURCES = ./resources/yapg.qrc
 
 ### DEPLOYMENT
-unix {
+unix:!macx {
         binfile.files += $$DESTDIR/$$TARGET
         binfile.path = /usr/bin/
         icon.path = /usr/share/$$TARGET
